@@ -46,13 +46,13 @@ async function loadByBreed(el) {
     }
 }
 
-function populateSlideshow(images) {
+function createSlideshow(images) {
     AllImages = images
 
     if (AllImages.length > 1) {
-        document.querySelector('.slideshow').innerHTML = `
-            <div class="slide" style="background-image: url('${AllImages[0]}')"></div>
-            <div class="slide" style="background-image: url('${AllImages[1]}')"></div>
+        document.getElementById('slideshow').innerHTML = `
+            <div class="slide" style="background-image: url('${Images[0]}')"></div>
+            <div class="slide" style="background-image: url('${Images[1]}')"></div>
         `
         currentPosition += 2
         if (AllImages.length === 2) currentPosition = 0
@@ -66,14 +66,14 @@ function populateSlideshow(images) {
     }
 
 function nextSlide() {
-    document.querySelector('.slideshow').insertAdjacentHTML('beforeend', `
-        <div class="slide" style="background-image: url('${AllImages[currentPosition]}')"></div>
-    `)deleteFirstDelay = setTimeout(function () {
-        document.querySelector('.slide').remove()
+    document.getElementById("slideshow").insertAdjacentHTML("beforeend", `<div class="slide" style="background-image: url('${Images[currentPosition]}')"></div>`)
+    setTimeout(function () {
+        document.querySelector(".slide").remove()
     }, 1000)
 
-    if (currentPosition + 1 >= AllImages.length) {
+    if (currentPosition + 1 >= images.length) {
         currentPosition = 0
     } else {
         currentPosition++
     }
+}
